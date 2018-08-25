@@ -1,0 +1,34 @@
+{
+  "name": "TkinterCRX",
+  "description": "",
+  "version": "0.1",
+  "manifest_version": 2,
+  "icons": {
+  },
+  "background": {
+    "page": "bg.html"
+  },
+  "permissions": [
+    "tabs", "activeTab"
+  ],
+  "browser_action": {
+    "default_title": "Tkinter"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/i.js"],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    "js/l.js"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://*.hackingtons.com/*",
+      "*://*.hackingtons.io/*",
+      "*://*.trinket.com/*"
+    ]
+  }
+}

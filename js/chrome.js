@@ -9,18 +9,15 @@ var TkConf = {};
 
 
 chrome.browserAction.onClicked.addListener(function(Tab) {
-  //
-  // Setup and Search for TK Config values
-  //
-
-  chrome.windows.create({
-    url: "index.html", type: "popup", width: TkConf.w, height: TkConf.h
-  }, function(ChromeWindow) {
-  });
+  /*
+   *
+   */
 });
 
 
 chrome.runtime.onConnectExternal.addListener(function(TkPort) {
+  console.log("Connected webpage", TkPort);
+
   if(TkPort.name !== "TkConf") {
     TkPort.disconnect();
   }
@@ -29,6 +26,22 @@ chrome.runtime.onConnectExternal.addListener(function(TkPort) {
     console.log("Message", Msg);
 
     if(Msg) {
+      if(Msg.code) {
+        // Parse code for Tkinter methods.
+        // Setup TkConf
+      }
+
+      if(Msg.gui) {
+        switch(Msg.gui) {
+          // Open GUI and build visuals
+          case 0x1337:
+            chrome.windows.create({
+              url: "index.html", type: "popup", width: TkConf.w, height: TkConf.h
+            }, function(ChromeWindow) {
+            });
+          break;
+        }
+      }
       //TkPort.postMessage({});
     }
   });
